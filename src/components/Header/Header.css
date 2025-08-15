@@ -1,0 +1,171 @@
+/* Base Styles */
+.header-container {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.carousel-item1,
+.carousel-item2,
+.carousel-item3 {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.carousel-item1 {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../../utils/images/gallery10.jpg);
+}
+
+.carousel-item2 {
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)), url(../../utils/images/gallery12.jpg);
+}
+
+.carousel-item3 {
+  background-image: linear-gradient(to left, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)), url(../../utils/images/gallery13.jpg);
+}
+
+.carousel-content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+}
+
+.text-content {
+  max-width: 600px;
+  color: white;
+}
+
+/* Alignements */
+.left-align {
+  margin-right: auto;
+  text-align: left;
+  padding-left: 10%;
+}
+
+.right-align {
+  margin-left: auto;
+  text-align: right;
+  padding-right: 10%;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.hover-text {
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.3s ease;
+}
+
+.hover-text:hover {
+  -webkit-line-clamp: unset;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.contact-link {
+  text-decoration: none;
+}
+
+.btn-outline-light {
+  border-width: 2px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+}
+
+/* Indicateurs */
+.custom-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 10;
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background-color: white;
+  transform: scale(1.2);
+}
+
+/* Mobile Responsive */
+@media only screen and (max-width: 768px) {
+  .carousel-item1 {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../../utils/images/gallery10.jpg);
+  }
+  
+  .carousel-item2 {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../../utils/images/gallery12.jpg);
+  }
+  
+  .carousel-item3 {
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../../utils/images/gallery13.jpg);
+  }
+
+  .carousel-content {
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .text-content {
+    text-align: center;
+    padding: 0 !important;
+    margin: 0 auto !important;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  .hover-text {
+    -webkit-line-clamp: 4;
+    font-size: 0.95rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn-outline-light {
+    width: 100%;
+    max-width: 250px;
+    padding: 0.5rem 1rem;
+  }
+}

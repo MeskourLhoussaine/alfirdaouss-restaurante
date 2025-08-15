@@ -1,0 +1,78 @@
+/* Header background */
+.menu-page header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(../../utils/images/1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-color: #28a745;
+}
+
+/* Animation des items */
+.menu-item-container {
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+}
+
+.menu-item-container:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+ 
+}
+
+/* Ingrédients */
+.ingredients-container {
+  overflow: hidden;
+  background-color: #28a745;
+}
+
+.ingredients-list {
+  padding-top: 15px;
+  transition: all 0.3s ease;
+}
+
+.bg-dark .ingredients-list {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* En-têtes des sections */
+.section-header {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 8px;
+    
+}
+
+.section-header:hover {
+  color: #28a745 !important;
+  background-color: rgba(40, 167, 69, 0.1);
+}
+
+/* Animation du collapse */
+.collapsing {
+  transition: height 0.3s ease;
+
+ 
+}
+
+/* Images des items */
+.card-img-container {
+  transition: transform 0.3s ease;
+ background-color: #28a745;
+}
+
+.card-img-container:hover {
+  transform: scale(1.05);
+  background-color: #28a745;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-item-container {
+    margin-bottom: 20px;
+  }
+  
+  .section-header {
+    padding: 8px 12px;
+  }
+}
