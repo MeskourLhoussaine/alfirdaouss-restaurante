@@ -1,6 +1,5 @@
 {
   "name": "alfirdaouss-restaurant",
-  
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -19,7 +18,6 @@
     "react-scripts": "5.0.1",
     "swiper": "^11.2.10",
     "web-vitals": "^5.0.3"
-   
   },
   "homepage": "https://meskourlhoussaine.github.io/alfirdaouss-restaurant",
   "scripts": {
@@ -28,8 +26,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-"deploy": "gh-pages -d build"
-
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
