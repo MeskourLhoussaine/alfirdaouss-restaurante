@@ -1,5 +1,5 @@
 import './App.css';
-import { HashRouter as Router, Link, Routes, Route } from 'react-router-dom';
+import { Link, Routes, Route } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUtensils } from '@fortawesome/free-solid-svg-icons';
 import Container from 'react-bootstrap/Container';
@@ -14,51 +14,61 @@ import Footer from './components/Footer/Footer';
 
 function App() {
   return (
-    <Router>
-      <div id="app">
-        {/* Transparent Navbar */}
-        <Navbar expand="lg" className="fixed-top bg-transparent custom-navbar shadow-sm">
-          <Container fluid="md">
-            <Navbar.Brand as={Link} to="/" className="d-flex align-items-center gap-2 text-success">
-              <FontAwesomeIcon icon={faUtensils} size="xl" />
-              <div className="d-flex flex-column text-end lh-sm">
-                <span className="fw-bold fs-6">Al Firdaousse</span>
-                <small className="fw-bold fs-6">Restaurant</small>
-              </div>
-            </Navbar.Brand>
+    <div id="app">
+      {/* Transparent Navbar */}
+      <Navbar expand="lg" className="fixed-top bg-transparent custom-navbar shadow-sm">
+        <Container fluid="md">
+          <Navbar.Brand as={Link} to="/" className="d-flex align-items-center gap-2 text-success">
+            <FontAwesomeIcon icon={faUtensils} size="xl" />
+            <div className="d-flex flex-column text-end lh-sm">
+              <span className="fw-bold fs-6">Al Firdaousse</span>
+              <small className="fw-bold fs-6">Restaurant</small>
+            </div>
+          </Navbar.Brand>
 
-            <Navbar.Toggle aria-controls="navbar-nav" />
+          <Navbar.Toggle aria-controls="navbar-nav" />
 
-            <Navbar.Collapse id="navbar-nav" className="justify-content-between">
-              <Nav className="mx-auto gap-3">
-                <Link to="/" className="nav-link text-uppercase fw-semibold text-success">
-                  Home
-                </Link>
-                <Link to="/menu" className="nav-link text-uppercase fw-semibold text-success">
-                  Menu
-                </Link>
-                <Link to="/about" className="nav-link text-uppercase fw-semibold text-success">
-                  About
-                </Link>
-                <Link to="/contact" className="nav-link text-uppercase fw-semibold text-success">
-                  Contact
-                </Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
+          <Navbar.Collapse id="navbar-nav" className="justify-content-between">
+            <Nav className="mx-auto gap-3">
+              <Link to="/" className="nav-link text-uppercase fw-semibold text-success">
+                Home
+              </Link>
+              <Link to="/menu" className="nav-link text-uppercase fw-semibold text-success">
+                Menu
+              </Link>
+             { <Link to="#" className="nav-link text-uppercase fw-semibold text-success">
+                About
+              </Link>}
+              <Link to="#" className="nav-link text-uppercase fw-semibold text-success">
+                Contact
+              </Link>
+            </Nav>
 
-        {/* Routing */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+          {/* 
+<Link to="#" className="text-decoration-none">
+  <button
+    type="button"
+    className="btn btn-success px-4 py-2 rounded-1 text-capitalize text-nowrap"
+  >
+    Book a table
+  </button>
+</Link> 
+*/}
 
-        <Footer />
-      </div>
-    </Router>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+
+      {/* Routing */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/menu" element={<Menu />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+
+      <Footer />
+    </div>
   );
 }
 
