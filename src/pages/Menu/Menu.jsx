@@ -8,7 +8,7 @@ import { Card, CardBody, CardText, CardTitle, Collapse } from 'react-bootstrap';
 
 import { motion } from 'framer-motion';
 import { FaCircle, FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import BreakfastImg from '../../utils/images/breakfast-img.jpg';
+import BreakfastImg from '../../utils/images/pizza-bg.jpg';
 import LunchImg from '../../utils/images/lunch-img.jpg';
 import DinnerImg from '../../utils/images/dinner-img.jpg';
 import DessertImg from '../../utils/images/dessert-img.jpg';
@@ -52,6 +52,7 @@ function Menu() {
         setShowState={setShowPizzas} 
         chunks={breakfastChunks} 
         sectionImg={BreakfastImg} 
+        
       />
 
       <Section 
@@ -59,7 +60,6 @@ function Menu() {
         showState={showLunch} 
         setShowState={setShowLunch} 
         chunks={lunchChunks} 
-        bgDark={true} 
         sectionImg={LunchImg} 
       />
 

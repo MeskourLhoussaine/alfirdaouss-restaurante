@@ -13,9 +13,12 @@ const containerVariants = {
   }
 };
 
-function Section({ title, showState, setShowState, chunks, bgDark = false, sectionImg = null }) {
+function Section({ title, showState, setShowState, chunks, bgDark = false, sectionImg = null, bgColor = null }) {
   return (
-    <div className={`${title.toLowerCase()} ${bgDark ? 'bg-dark text-light py-5' : 'py-5'} section-container`}>
+    <div
+      className={`${title.toLowerCase()} ${bgDark ? ' text-light py-5' : 'py-5'} section-container`}
+      style={{ background: bgColor ? bgColor : (bgDark ? '#1a1a1a' : '#f8f9fa') }}
+    >
       <div className='container'>
         {/* Header cliquable */}
         <motion.div
@@ -48,14 +51,14 @@ function Section({ title, showState, setShowState, chunks, bgDark = false, secti
                 {/* Image de section */}
                 {sectionImg && (
                   <motion.div
-                    className='col-lg-6 d-flex justify-content-center align-items-center mb-4 mb-lg-0'
+                    className='col-12 d-flex justify-content-center align-items-center mb-4 '
                     initial={{ opacity: 0, x: -200 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8 }}
                   >
-                 
+                    <img src={sectionImg} alt={title} className="section-image" />
                   </motion.div>
-                )}*/
+                )}
 
                 {/* Items en colonnes égales */}
                 {chunks.flat().map(item => (
@@ -79,7 +82,6 @@ function Section({ title, showState, setShowState, chunks, bgDark = false, secti
       {/* Styles additionnels */}
       <style jsx>{`
         .section-container {
-          background: ${bgDark ? '#1a1a1a' : 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'};
           border-radius: 15px;
           padding: 40px 20px;
           margin-bottom: 40px;
@@ -97,7 +99,9 @@ function Section({ title, showState, setShowState, chunks, bgDark = false, secti
 
         .section-image {
           max-height: 400px;
+          width: 100%;
           object-fit: cover;
+          border-radius: 10px;
         }
       `}</style>
     </div>
