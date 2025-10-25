@@ -76,7 +76,6 @@ function Menu() {
         showState={showDessert} 
         setShowState={setShowDessert} 
         chunks={dessertChunks} 
-        bgDark={true} 
         sectionImg={DessertImg} 
       />
 
