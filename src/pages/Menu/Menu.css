@@ -10,6 +10,7 @@
 .menu-item-container {
   transition: all 0.3s ease;
   cursor: pointer;
+  
 
 }
 
@@ -75,4 +76,25 @@
   .section-header {
     padding: 8px 12px;
   }
+}
+/*****/
+.section-header {
+  transition: all 0.4s ease;
+}
+
+.section-header:hover {
+  box-shadow: 0 6px 20px rgba(40, 167, 69, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Smooth section background */
+.bg-dark {
+  background: radial-gradient(circle at top left, #1e1e1e, #000);
+}
+
+/* Light section background */
+.menu-page .my-5 {
+  background: linear-gradient(180deg, #ffffff, #f8fdf8);
+  border-radius: 16px;
+  padding: 50px 0;
 }
