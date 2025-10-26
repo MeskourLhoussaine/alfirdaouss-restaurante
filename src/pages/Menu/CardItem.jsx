@@ -1,32 +1,23 @@
 // src/components/Menu/CardItem.js
 import React, { useState } from 'react';
 import { Card, CardBody, CardText, CardTitle } from 'react-bootstrap';
-import { motion } from 'framer-motion';
-
-// Dictionnaire d'icônes pour les ingrédients 🍅🧀🌿
-const ingredientIcons = {
-  "Sauce tomate": "🍅",
-  "Mozzarella": "🧀",
-  "Basilic frais": "🌿",
-  "Huile d'olive": "🫒",
-  "Thon": "🐟",
-  "Oignons": "🧅",
-  "Poivrons": "🫑",
-  "Champignons": "🍄",
-  "Viande hachée": "🥩",
-  "Dinde": "🍗",
-  "Fruits de mer": "🦐",
-  "Olives": "🫒",
-  "Fromage": "🧀",
-  "Tomates": "🍅"
-};
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaLeaf, FaCheese, FaDrumstickBite, FaPizzaSlice, FaListUl } from 'react-icons/fa';
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+};
+
+const ingredientIcons = {
+  cheese: <FaCheese className="text-warning" />,
+  chicken: <FaDrumstickBite className="text-danger" />,
+  veggie: <FaLeaf className="text-success" />,
+  pizza: <FaPizzaSlice className="text-orange" />,
 };
 
 function CardItem({ item, bgDark = false }) {
+  const [showIngredients, setShowIngredients] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -34,104 +25,117 @@ function CardItem({ item, bgDark = false }) {
       key={item.id}
       className="menu-item-container"
       variants={itemVariants}
-      initial="hidden"
-      animate="visible"
-      whileHover={{ scale: 1.02, y: -5 }}
+      whileHover={{ scale: 1.02, y: -3 }}
       transition={{ duration: 0.25 }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      onClick={() => setIsHovered(!isHovered)} // pour mobile
     >
-      <motion.div
-        animate={{
-          backgroundColor: isHovered
-            ? bgDark
-              ? "rgba(40, 167, 69, 0.2)" // vert transparent sur fond sombre
-              : "rgba(220, 250, 220, 0.9)" // vert très clair sur fond clair
-            : bgDark
-              ? "#212529"
-              : "#fff"
-        }}
-        transition={{ duration: 0.3 }}
-        className={`border-0 mb-4 shadow-sm rounded-4 ${bgDark ? 'text-light' : 'text-dark'}`}
+      <Card
+        className={`border-0 mb-3 shadow-sm ${
+          bgDark ? 'bg-dark text-light' : ''
+        } ${isHovered ? 'bg-light shadow-lg' : ''}`}
         style={{
-          overflow: "hidden",
-          boxShadow: isHovered
-            ? "0 4px 15px rgba(0,0,0,0.2)"
-            : "0 2px 8px rgba(0,0,0,0.1)",
+          height: '150px', // ✅ hauteur fixe
+          transition: 'background 0.3s ease, box-shadow 0.3s ease',
+          overflow: 'hidden',
         }}
       >
-        <CardBody className="p-4">
-          <div className='d-flex align-items-center'>
-            
-            {/* Image circulaire */}
-            <div className='me-4' style={{ flex: '0 0 100px' }}>
+        <CardBody className="py-3 h-100 d-flex align-items-center">
+          <div className="d-flex align-items-center w-100">
+            {/* Image */}
+            <div className="me-3" style={{ flex: '0 0 80px' }}>
               <motion.div
-                className='rounded-circle overflow-hidden border border-success'
-                style={{ width: '100px', height: '100px' }}
-                whileHover={{ scale: 1.1, rotate: 2 }}
+                className="rounded-circle overflow-hidden"
+                style={{ width: '80px', height: '80px' }}
+                whileHover={{ scale: 1.1 }}
                 transition={{ type: 'spring', stiffness: 200 }}
               >
                 <img
                   src={item.image}
                   alt={item.name}
-                  className='img-fluid h-100 w-100'
+                  className="img-fluid h-100 w-100"
                   style={{ objectFit: 'cover' }}
                 />
               </motion.div>
             </div>
 
-            {/* Contenu principal */}
-            <div className='flex-grow-1'>
-              <CardTitle className='fs-4 text-capitalize mb-2 fw-bold text-success'>
+            {/* Texte principal */}
+            <div className="flex-grow-1 d-flex flex-column justify-content-center" style={{ overflow: 'hidden' }}>
+              <CardTitle className="fs-5 text-capitalize mb-1 text-truncate">
                 {item.name}
               </CardTitle>
 
-              {/* Description */}
               {item.description && (
                 <CardText
                   className={bgDark ? 'text-light' : 'text-muted'}
-                  style={{ opacity: 0.9 }}
+                  style={{
+                    fontSize: '0.85rem',
+                    opacity: 0.85,
+                    lineHeight: '1.2',
+                    maxHeight: '36px',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                  }}
                 >
                   {item.description}
                 </CardText>
               )}
 
-              {/* Ingrédients (en bas, visible uniquement au survol) */}
-              {isHovered && item.ingredients && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className={`mt-3 p-2 rounded-3 ${bgDark ? 'bg-secondary text-light' : 'bg-light text-dark'}`}
+              {/* Icône ingrédients */}
+              {item.ingredients && item.ingredients.length > 0 && (
+                <div
+                  className="mt-1 d-flex align-items-center"
+                  onClick={() => setShowIngredients(!showIngredients)}
                   style={{
+                    cursor: 'pointer',
+                    color: '#198754',
                     fontSize: '0.9rem',
-                    boxShadow: '0 2px 6px rgba(0,0,0,0.1)',
+                    gap: '6px',
+                    userSelect: 'none',
                   }}
                 >
-                  <strong>🧂 Ingrédients :</strong>
-                  <ul className="mt-2 mb-0" style={{ listStyleType: 'none', paddingLeft: 0 }}>
-                    {item.ingredients.map((ingredient, index) => (
-                      <li key={index}>
-                        {ingredientIcons[ingredient] || "🍽️"} {ingredient}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
+                  <FaListUl /> <span>Ingrédients</span>
+                </div>
               )}
             </div>
 
             {/* Prix */}
             <motion.div
-              style={{ flex: '0 0 100px', textAlign: 'right' }}
+              style={{ flex: '0 0 80px', textAlign: 'right' }}
               whileHover={{ scale: 1.1 }}
             >
-              <CardText className='fs-3 fw-bold text-success mb-0'>
+              <CardText className="fs-5 fw-bold text-success mb-0">
                 {item.price}
               </CardText>
             </motion.div>
           </div>
         </CardBody>
-      </motion.div>
+      </Card>
+
+      {/* Liste des ingrédients (en dehors de la carte pour ne pas agrandir la hauteur) */}
+      <AnimatePresence>
+        {showIngredients && (
+          <motion.div
+            className="px-4 pb-2"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            {item.ingredients.map((ing, index) => (
+              <motion.div
+                key={index}
+                className="d-flex align-items-center text-muted"
+                style={{ fontSize: '0.85rem', gap: '5px' }}
+              >
+                {ingredientIcons[ing.icon] || <FaLeaf className="text-success" />}
+                <span>{ing.name}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 }
