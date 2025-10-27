@@ -3,7 +3,6 @@ import './Menu.css';
 import Section from '../../pages/Menu/Section';
 
 
-
 import { Card, CardBody, CardText, CardTitle, Collapse } from 'react-bootstrap';
 
 import { motion } from 'framer-motion';

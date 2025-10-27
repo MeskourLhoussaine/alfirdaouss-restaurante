@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-
 function Footer() {
     const [newDate, setNewDate] = useState('');
     useEffect(() => {

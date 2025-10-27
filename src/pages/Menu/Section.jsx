@@ -85,6 +85,7 @@ function Section({ title, showState, setShowState, chunks, bgDark = false, secti
           border-radius: 15px;
           padding: 40px 20px;
           margin-bottom: 40px;
+          
         }
 
         .section-header:hover .section-title {
