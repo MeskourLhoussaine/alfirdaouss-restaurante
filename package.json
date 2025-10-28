@@ -19,14 +19,14 @@
     "swiper": "^11.2.10",
     "web-vitals": "^5.0.3"
   },
-  "homepage": "https://meskourlhoussaine.github.io/alfirdaouss-restaurant",
+  "homepage": "https://github.com/MeskourLhoussaine/alfirdaouss-restaurante",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+   "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
