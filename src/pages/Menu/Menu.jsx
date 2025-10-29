@@ -7,18 +7,23 @@ import LunchImg from '../../utils/images/lunch-img.jpg';
 import DinnerImg from '../../utils/images/dinner-img.jpg';
 import DessertImg from '../../utils/images/dessert-img.jpg';
 import DrinksImg from '../../utils/images/drinks-img.jpg';
+import TacosImg from '../../utils/images/tacos.png';
 import breakfast from '../../utils/breakfast';
 import lunch from '../../utils/lunch';
 import dinner from '../../utils/dinner';
 import dessert from '../../utils/dessert';
 import drink from '../../utils/drink';
+import tacos from '../../utils/tacos';
 
 function Menu() {
+  
   const [showPizzas, setShowPizzas] = useState(false);
   const [showLunch, setShowLunch] = useState(false);
   const [showDinner, setShowDinner] = useState(false);
   const [showDessert, setShowDessert] = useState(false);
   const [showDrinks, setShowDrinks] = useState(false);
+  /*Tacos */
+  const [showTacos,setShowTacos]=useState(false)
 
   const chunkArray = (array, size) => {
     const result = [];
@@ -31,6 +36,8 @@ function Menu() {
   const dinnerChunks = chunkArray(dinner, 5);
   const dessertChunks = chunkArray(dessert, 5);
   const drinkChunks = chunkArray(drink, 5);
+  /*tacos */
+  const tacosChunks=chunkArray(tacos,5 );
 
   return (
     <div className='menu-page'>
@@ -80,6 +87,15 @@ function Menu() {
         chunks={drinkChunks} 
         sectionImg={DrinksImg} 
       />
+
+      <Section 
+       title="Tacos" 
+        showState={showTacos} 
+        setShowState={setShowTacos} 
+        chunks={tacosChunks} 
+        sectionImg={TacosImg} 
+        />
+
     </div>
   );
 }
