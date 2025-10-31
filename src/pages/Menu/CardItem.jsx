@@ -2,7 +2,13 @@
 import React, { useState } from 'react';
 import { Card, CardBody, CardText, CardTitle } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaLeaf, FaCheese, FaDrumstickBite, FaPizzaSlice, FaListUl } from 'react-icons/fa';
+import {
+  FaLeaf,
+  FaCheese,
+  FaDrumstickBite,
+  FaPizzaSlice,
+  FaListUl,
+} from 'react-icons/fa';
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -36,9 +42,9 @@ function CardItem({ item, bgDark = false }) {
           bgDark ? 'bg-dark text-light' : ''
         } ${isHovered ? 'bg-light shadow-lg' : ''}`}
         style={{
-          height: '150px', // ✅ hauteur fixe
+          minHeight: '150px', // minimum hauteur
           transition: 'background 0.3s ease, box-shadow 0.3s ease',
-          overflow: 'hidden',
+          overflow: 'visible', // autorise contenu supplémentaire
         }}
       >
         <CardBody className="py-3 h-100 d-flex align-items-center">
@@ -61,7 +67,10 @@ function CardItem({ item, bgDark = false }) {
             </div>
 
             {/* Texte principal */}
-            <div className="flex-grow-1 d-flex flex-column justify-content-center" style={{ overflow: 'hidden' }}>
+            <div
+              className="flex-grow-1 d-flex flex-column justify-content-center"
+              style={{ overflow: 'hidden' }}
+            >
               <CardTitle className="fs-5 text-capitalize mb-1 text-truncate">
                 {item.name}
               </CardTitle>
@@ -129,7 +138,9 @@ function CardItem({ item, bgDark = false }) {
                 className="d-flex align-items-center text-muted"
                 style={{ fontSize: '0.85rem', gap: '5px' }}
               >
-                {ingredientIcons[ing.icon] || <FaLeaf className="text-success" />}
+                {ingredientIcons[ing.icon] || (
+                  <FaLeaf className="text-success" />
+                )}
                 <span>{ing.name}</span>
               </motion.div>
             ))}

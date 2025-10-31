@@ -1,3 +1,12 @@
+
+
+
+@media (max-width: 768px) {
+  .menu-item-container .card {
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+}
 .App {
   text-align: center;
 }
